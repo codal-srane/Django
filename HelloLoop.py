@@ -1,4 +1,6 @@
 # Sample script that print hello five times
 
-for i in range(5):
+i = 0
+while i<5:
 	print('Hello')
+	i += 1
