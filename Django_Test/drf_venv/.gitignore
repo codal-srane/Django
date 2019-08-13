@@ -1,0 +1,9 @@
+.DS_Store
+.Python
+__pycache__
+/include/*
+/lib/*
+/bin/*
+/drf_test/db.sqlite3
+/drf_test/profiles/migrations
+
