@@ -22,14 +22,11 @@ class UserCreateSerializer(serializers.ModelSerializer):
 	def validate(self, data):
 		if not data.get('email'):
 			raise serializers.ValidationError("The email cannot be blank.")        
-
 		if not data.get('password') or not data.get('confirm_password'):
 			raise serializers.ValidationError("Please enter a password and "
                 "confirm it.")
-
 		if data.get('password') != data.get('confirm_password'):
 			raise serializers.ValidationError("The passwords don't match.")
-
 		return data
 
 	def create(self, validated_data):
@@ -58,7 +55,6 @@ class UserLoginSerializer(serializers.ModelSerializer):
 			'token',
 			]
 		extra_kwargs = {
-			'username': {'required': False},
 			'password': {'write_only': True},
 			'first_name': {'read_only': True},
 			'last_name': {'read_only': True},
