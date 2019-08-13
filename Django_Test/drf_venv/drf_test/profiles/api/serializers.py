@@ -45,7 +45,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
 	username = serializers.CharField()
 	class Meta:
 		model = User
-		fields =[
+		fields = [
 			'id',
 			'first_name',
 			'last_name',
@@ -81,3 +81,23 @@ class UserLoginSerializer(serializers.ModelSerializer):
 				raise ValidationError('Incorrect Credentials.')
 		else:
 			raise ValidationError('The username is invalid.')
+
+
+class UserChangePasswordSerializer(serializers.ModelSerializer):
+	password = serializers.CharField()
+	new_password = serializers.CharField()
+	class Meta:
+		model = User
+		fields = [ 
+			'password', 
+			'new_password'
+			]
+		extra_kwargs = {
+			'new_password': {'write_only': True}
+			}
+
+	def validate(self, data):
+		print(data)
+		if not data['password'] or not data['new_password']:
+			raise ValidationError('Fields cannot be blank')
+		return data
